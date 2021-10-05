@@ -3,4 +3,12 @@
     <string name="onboarding_input_phone">Your phone</string>
     <string name="onboarding_verification">Verification code</string>
     <string name="onboarding_verification_desc">We sen\'t a verification code to your phone through SMS</string>
+
+    <string name="theme_title">Theme</string>
+    <string name="theme_system">System default</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>
