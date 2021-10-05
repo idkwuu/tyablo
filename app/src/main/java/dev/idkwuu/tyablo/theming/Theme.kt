@@ -57,36 +57,31 @@ fun TyabloTheme(
     viewModel: ThemeViewModel,
     content: @Composable () -> Unit
 ) {
-    val transparentBars = true
     val theme by viewModel.themeMode.observeAsState()
-    val darkIcons by viewModel.darkIcons.observeAsState(true)
-    val systemUiController = rememberSystemUiController()
     val isDarkMode = when (theme) {
         Theme.LIGHT -> false
         Theme.DARK -> true
         else -> isSystemInDarkTheme() // System default
     }
+    val systemUiController = rememberSystemUiController()
 
     SideEffect {
+        viewModel.setIsDarkModeActive(isDarkMode)
+
         systemUiController.setSystemBarsColor(
             color = Color.Transparent,
-            darkIcons = darkIcons,
+            darkIcons = !isDarkMode,
             isNavigationBarContrastEnforced = false
         )
     }
 
-    AnimatedContent(
-        targetState = isDarkMode,
-        transitionSpec = { fadeIn() with fadeOut() }
-    ) { enableDarkMode ->
-        MaterialTheme(
-            colors = getTheme(enableDarkMode),
-            typography = typo,
-            shapes = shapes
-        ) {
-            ProvideWindowInsets {
-                content()
-            }
+    MaterialTheme(
+        colors = getTheme(isDarkMode),
+        typography = typo,
+        shapes = shapes
+    ) {
+        ProvideWindowInsets {
+            content()
         }
     }
 }

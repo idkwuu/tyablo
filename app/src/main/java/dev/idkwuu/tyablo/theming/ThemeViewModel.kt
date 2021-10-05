@@ -14,17 +14,15 @@ import javax.inject.Inject
 class ThemeViewModel @Inject constructor(
     val tyabloPreferences: TyabloPreferences
 ): ViewModel() {
-    val themeMode = tyabloPreferences.themeMode.asLiveData()
+    val isDarkModeActive = MutableLiveData<Boolean>()
+    fun setIsDarkModeActive(isActive: Boolean) {
+        isDarkModeActive.value = isActive
+    }
 
+    val themeMode = tyabloPreferences.themeMode.asLiveData()
     fun setThemeMode(mode: Theme) {
         viewModelScope.launch {
             tyabloPreferences.setThemeMode(mode)
         }
-    }
-
-    val darkIcons = MutableLiveData(true)
-
-    fun setDarkIcons(value: Boolean) {
-        darkIcons.value = value
     }
 }
