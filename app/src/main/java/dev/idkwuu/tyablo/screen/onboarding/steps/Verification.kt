@@ -26,13 +26,13 @@ fun Verification(goNext: () -> Unit) {
     ) {
         Text(
             text = stringResource(R.string.onboarding_verification),
-            style = MaterialTheme.typography.h3,
+            style = MaterialTheme.typography.h4,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 4.dp)
         )
         Text(
             stringResource(R.string.onboarding_verification_desc),
-            modifier = Modifier.padding(bottom = 16.dp)
+            modifier = Modifier.padding(bottom = 4.dp)
         )
         OutlinedTextField(
             value = code,

@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = "onboarding",
                         modifier = Modifier.fillMaxSize()
                     ) {
-                        composable("onboarding") { Onboarding() }
+                        composable("onboarding") { Onboarding(themeViewModel = themeViewModel) }
                     }
                 }
             }
