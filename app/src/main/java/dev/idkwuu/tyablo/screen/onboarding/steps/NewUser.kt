@@ -1,7 +1,9 @@
 package dev.idkwuu.tyablo.screen.onboarding.steps
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -23,24 +25,41 @@ fun NewUser(goNext: (String) -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = stringResource(R.string.onboarding_new_user),
-            style = MaterialTheme.typography.h4,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp),
-            textAlign = TextAlign.Center
-        )
-        //Spacer(Modifier.weight(1f))
-        CustomTextInput(
-            text = name,
-            onEdit = { name = it },
-            placeholder = { Text(stringResource(R.string.setup_your_name)) },
-        )
-        Spacer(Modifier.weight(1f))
+        Box(
+            Modifier.weight(1f),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            Text(
+                text = stringResource(R.string.onboarding_new_user),
+                style = MaterialTheme.typography.h4,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 16.dp),
+                textAlign = TextAlign.Center
+            )
+        }
+        Column(
+            Modifier.weight(1f),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            CustomTextInput(
+                text = name,
+                onEdit = { name = it },
+                placeholder = { Text(stringResource(R.string.setup_your_name)) },
+                isError = name.isEmpty(),
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
+            )
+            Text(
+                stringResource(R.string.onboarding_new_user_info),
+                textAlign = TextAlign.Center
+            )
+        }
         WideButton(
             text = stringResource(R.string.next),
             onTap = { goNext("") },

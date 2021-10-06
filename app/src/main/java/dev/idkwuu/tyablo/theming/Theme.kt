@@ -40,6 +40,7 @@ private fun getTheme(darkTheme: Boolean, accentOverride: Color? = null): Colors 
 }
 
 private val shapes = Shapes(
+    medium = RoundedCornerShape(8.dp),
     large = RoundedCornerShape(16.dp)
 )
 

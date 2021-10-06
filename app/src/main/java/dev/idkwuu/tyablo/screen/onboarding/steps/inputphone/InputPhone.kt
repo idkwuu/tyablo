@@ -1,5 +1,6 @@
 package dev.idkwuu.tyablo.screen.onboarding.steps.inputphone
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -12,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,38 +38,53 @@ fun InputPhone(goNext: (String) -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.Center,
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = stringResource(R.string.onboarding_whats_phone),
-            style = MaterialTheme.typography.h4,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp),
-            textAlign = TextAlign.Center
-        )
-        //Spacer(Modifier.weight(1f))
-        Row {
+        Box(
+            Modifier.weight(1f),
+            contentAlignment = Alignment.TopCenter
+        ) {
+            Text(
+                text = stringResource(R.string.onboarding_whats_phone),
+                style = MaterialTheme.typography.h4,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(bottom = 16.dp),
+                textAlign = TextAlign.Center
+            )
+        }
+        Row(
+            Modifier.weight(1f),
+            verticalAlignment = Alignment.Top
+        ) {
             CustomTextInput(
                 text = intCode,
                 onEdit = { if (it.length < 5) intCode = it },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                 placeholder = { Text("1") },
-                modifier = Modifier.widthIn(max = 130.dp).padding(end = 8.dp),
-                leadingIcon = { Text("+") }
+                modifier = Modifier
+                    .widthIn(max = 130.dp)
+                    .padding(end = 8.dp),
+                leadingIcon = { Text("+") },
+                maxLines = 1
             )
             CustomTextInput(
                 text = phone,
                 onEdit = { phone = it },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                 placeholder = { Text("1234567890") },
+                maxLines = 1
             )
         }
-        Spacer(Modifier.weight(1f))
         WideButton(
             text = stringResource(R.string.next),
-            onTap = { goNext(phone) }
+            onTap = { goNext(phone) },
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+        WideButton(
+            text = stringResource(R.string.go_back),
+            onTap = {  },
+            transparentBackground = true,
         )
     }
 }

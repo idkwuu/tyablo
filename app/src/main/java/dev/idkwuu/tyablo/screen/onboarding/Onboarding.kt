@@ -38,54 +38,21 @@ fun Onboarding(
     val isDarkModeActive by themeViewModel.isDarkModeActive.observeAsState()
     var isShowingThemeSelector by remember { mutableStateOf(false) }
 
-    Scaffold(
-       topBar = {
-           TopAppBar(
-               backgroundColor = MaterialTheme.colors.background,
-               contentColor = MaterialTheme.colors.onSurface,
-               title = { },
-               actions = {
-                   IconButton(onClick = { isShowingThemeSelector = true }) {
-                       Icon(
-                           painterResource(if (isDarkModeActive == true) R.drawable.ic_moon else R.drawable.ic_sun),
-                           contentDescription = ""
-                       )
-                   }
-               },
-               modifier = Modifier.statusBarsPadding(),
-               elevation = 0.dp,
-               navigationIcon = {
-                   AnimatedVisibility(
-                       visible = currentRoute != OnboardingRoute.Start.route,
-                       enter = fadeIn(), exit = fadeOut()
-                   ) {
-                       IconButton(onClick = { loginNavController.navigateUp() }) {
-                           Icon(
-                               painterResource(R.drawable.ic_arrow_left),
-                               contentDescription = ""
-                           )
-                       }
-                   }
-               }
-           )
-       }
+    NavHost(
+        navController = loginNavController,
+        startDestination = OnboardingRoute.Start.route,
+        modifier = Modifier
+            .padding(top = 36.dp, bottom = 16.dp, start = 16.dp, end = 16.dp)
+            .fillMaxSize()
+            .statusBarsPadding()
+            .navigationBarsWithImePadding()
     ) {
-        NavHost(
-            navController = loginNavController, 
-            startDestination = OnboardingRoute.Start.route,
-            modifier = Modifier
-                .padding(bottom = 16.dp)
-                .fillMaxSize()
-                .statusBarsPadding()
-                .navigationBarsWithImePadding()
-        ) {
-            composable(OnboardingRoute.Start.route) { OnboardingStart { loginNavController.navigate(OnboardingRoute.InputPhone.route) }}
-            composable(OnboardingRoute.InputPhone.route) { InputPhone { loginNavController.navigate(OnboardingRoute.Verification.route) } }
-            composable(OnboardingRoute.Verification.route) { Verification { loginNavController.navigate(OnboardingRoute.NewUser.route) } }
-            composable(OnboardingRoute.NewUser.route) { NewUser { loginNavController.navigate(OnboardingRoute.LocationPermission.route) } }
-            composable(OnboardingRoute.LocationPermission.route) { LocationPermission { loginNavController.navigate(OnboardingRoute.Discovery.route) }}
-            composable(OnboardingRoute.Discovery.route) { Discovery {  } }
-        }
+        composable(OnboardingRoute.Start.route) { OnboardingStart { loginNavController.navigate(OnboardingRoute.InputPhone.route) }}
+        composable(OnboardingRoute.InputPhone.route) { InputPhone { loginNavController.navigate(OnboardingRoute.Verification.route) } }
+        composable(OnboardingRoute.Verification.route) { Verification { loginNavController.navigate(OnboardingRoute.NewUser.route) } }
+        composable(OnboardingRoute.NewUser.route) { NewUser { loginNavController.navigate(OnboardingRoute.LocationPermission.route) } }
+        composable(OnboardingRoute.LocationPermission.route) { LocationPermission { loginNavController.navigate(OnboardingRoute.Discovery.route) }}
+        composable(OnboardingRoute.Discovery.route) { Discovery {  } }
     }
 
     if (isShowingThemeSelector) {

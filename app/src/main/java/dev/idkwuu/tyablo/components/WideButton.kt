@@ -20,6 +20,7 @@ fun WideButton(
     text: String,
     transparentBackground: Boolean = false,
     onTap: () -> Unit,
+    isTapEnabled: Boolean = true
 ) {
     Card(
         backgroundColor = if (transparentBackground) Color.Transparent else MaterialTheme.colors.primary,
@@ -30,9 +31,10 @@ fun WideButton(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.clickable {
-                onTap()
-            }.padding(16.dp)
+            modifier = Modifier.clickable(
+                enabled = isTapEnabled,
+                onClick = onTap
+            ).padding(16.dp)
         ) {
             Text(
                 text,

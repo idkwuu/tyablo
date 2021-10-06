@@ -1,5 +1,6 @@
 package dev.idkwuu.tyablo.screen.onboarding.steps
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -17,12 +18,11 @@ import androidx.compose.ui.unit.dp
 import dev.idkwuu.tyablo.R
 import dev.idkwuu.tyablo.components.WideButton
 
+@ExperimentalAnimationApi
 @Composable
 fun OnboardingStart(goNext: () -> Unit) {
     Column(
-        Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp),
+        Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -36,13 +36,20 @@ fun OnboardingStart(goNext: () -> Unit) {
             text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.h3,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 16.dp),
+            modifier = Modifier.padding(top = 8.dp),
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.weight(1f))
         WideButton(
             text = stringResource(R.string.next),
-            onTap = goNext
+            onTap = goNext,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+        WideButton(
+            text = "",
+            onTap = goNext,
+            transparentBackground = true,
+            isTapEnabled = false
         )
     }
 }
