@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_arrow_left.xml" value="0.198" />
         <entry key="app/src/main/res/drawable/ic_arrow_right.xml" value="0.183" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1945" />
         <entry key="app/src/main/res/drawable/ic_map.xml" value="0.213" />
+        <entry key="app/src/main/res/drawable/ic_map_pin.xml" value="0.198" />
+        <entry key="app/src/main/res/drawable/ic_search.xml" value="0.198" />
       </map>
     </option>
   </component>
