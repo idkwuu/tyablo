@@ -1,28 +1,22 @@
 package dev.idkwuu.tyablo.screen.onboarding.steps
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dev.idkwuu.tyablo.R
-import dev.idkwuu.tyablo.components.CustomTextInput
 import dev.idkwuu.tyablo.components.WideButton
 
 @Composable
-fun Verification(goNext: () -> Unit) {
-    var code by remember { mutableStateOf("") }
-
+fun Discovery(goNext: () -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
@@ -31,28 +25,33 @@ fun Verification(goNext: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = stringResource(R.string.onboarding_verification),
+            text = stringResource(R.string.setup_discovery),
             style = MaterialTheme.typography.h4,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 4.dp),
             textAlign = TextAlign.Center
         )
-        Text(
-            stringResource(R.string.onboarding_verification_desc),
-            modifier = Modifier.padding(bottom = 16.dp),
-            textAlign = TextAlign.Center
-        )
         //Spacer(Modifier.weight(1f))
-        CustomTextInput(
-            text = code,
-            onEdit = { if (it.length < 9) code = it },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-            placeholder = { Text("12345678") },
+        Icon(
+            painter = painterResource(R.drawable.ic_search),
+            contentDescription = "",
+            modifier = Modifier.size(100.dp).padding(bottom = 4.dp)
+        )
+        Text(
+            text = stringResource(R.string.setup_discovery_info),
+            modifier = Modifier.padding(bottom = 4.dp),
+            textAlign = TextAlign.Center
         )
         Spacer(Modifier.weight(1f))
         WideButton(
             text = stringResource(R.string.next),
-            onTap = { goNext() }
+            onTap = {},
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+        WideButton(
+            text = stringResource(R.string.no_thanks),
+            onTap = {  },
+            transparentBackground = true
         )
     }
 }

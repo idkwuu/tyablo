@@ -17,11 +17,7 @@ import dev.idkwuu.tyablo.enums.Theme
 
 private fun getTheme(darkTheme: Boolean, accentOverride: Color? = null): Colors {
     val error = Color(0xFFB00020)
-    val accent = accentOverride ?: if (darkTheme) {
-        Color(0xff714cfe)
-    } else {
-        Color(0xff4a26fd)
-    }
+    val accent = accentOverride ?: Color(0xFF23529f)
     return if (darkTheme) {
         darkColors(
             primary = accent,

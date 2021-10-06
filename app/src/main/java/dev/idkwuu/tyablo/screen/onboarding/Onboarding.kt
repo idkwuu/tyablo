@@ -4,34 +4,26 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.accompanist.insets.statusBarsPadding
-import com.google.android.material.color.MaterialColors
 import dev.idkwuu.tyablo.OnboardingRoute
 import dev.idkwuu.tyablo.R
 import dev.idkwuu.tyablo.components.ThemeDialog
 import dev.idkwuu.tyablo.enums.Theme
-import dev.idkwuu.tyablo.screen.onboarding.steps.InputPhone
-import dev.idkwuu.tyablo.screen.onboarding.steps.OnboardingStart
-import dev.idkwuu.tyablo.screen.onboarding.steps.Verification
+import dev.idkwuu.tyablo.screen.onboarding.steps.*
+import dev.idkwuu.tyablo.screen.onboarding.steps.inputphone.InputPhone
 import dev.idkwuu.tyablo.theming.ThemeViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -87,9 +79,12 @@ fun Onboarding(
                 .statusBarsPadding()
                 .navigationBarsWithImePadding()
         ) {
-            composable(OnboardingRoute.Start.route) { OnboardingStart { loginNavController.navigate("inputPhone") }}
-            composable(OnboardingRoute.InputPhone.route) { InputPhone { loginNavController.navigate("verification") } }
-            composable(OnboardingRoute.Verification.route) { Verification { loginNavController.navigate("verification") } }
+            composable(OnboardingRoute.Start.route) { OnboardingStart { loginNavController.navigate(OnboardingRoute.InputPhone.route) }}
+            composable(OnboardingRoute.InputPhone.route) { InputPhone { loginNavController.navigate(OnboardingRoute.Verification.route) } }
+            composable(OnboardingRoute.Verification.route) { Verification { loginNavController.navigate(OnboardingRoute.NewUser.route) } }
+            composable(OnboardingRoute.NewUser.route) { NewUser { loginNavController.navigate(OnboardingRoute.LocationPermission.route) } }
+            composable(OnboardingRoute.LocationPermission.route) { LocationPermission { loginNavController.navigate(OnboardingRoute.Discovery.route) }}
+            composable(OnboardingRoute.Discovery.route) { Discovery {  } }
         }
     }
 
