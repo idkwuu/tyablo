@@ -35,13 +35,13 @@ fun Discovery(goNext: () -> Unit) {
                 text = stringResource(R.string.setup_discovery),
                 style = MaterialTheme.typography.h4,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 36.dp),
+                modifier = Modifier.padding(bottom = 26.dp),
                 textAlign = TextAlign.Center
             )
             Icon(
                 painter = painterResource(R.drawable.ic_search),
                 contentDescription = "",
-                modifier = Modifier.padding(bottom = 36.dp).size(100.dp)
+                modifier = Modifier.padding(bottom = 36.dp).size(118.dp)
             )
         }
         Box(
