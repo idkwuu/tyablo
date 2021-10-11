@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Tyablo</string>
 
+    <string name="home">Home</string>
+
     <string name="theme_title">Theme</string>
     <string name="theme_system">System default</string>
     <string name="theme_light">Light</string>

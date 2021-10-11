@@ -1,4 +1,4 @@
-package dev.idkwuu.tyablo.screen.onboarding.steps.inputphone
+package dev.idkwuu.tyablo.ui.onboarding.steps.inputphone
 
 import androidx.compose.runtime.Composable
 

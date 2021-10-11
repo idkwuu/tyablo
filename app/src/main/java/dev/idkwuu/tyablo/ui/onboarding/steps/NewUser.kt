@@ -1,15 +1,13 @@
-package dev.idkwuu.tyablo.screen.onboarding.steps
+package dev.idkwuu.tyablo.ui.onboarding.steps
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -19,7 +17,9 @@ import dev.idkwuu.tyablo.components.CustomTextInput
 import dev.idkwuu.tyablo.components.WideButton
 
 @Composable
-fun LocationPermission(goNext: () -> Unit) {
+fun NewUser(goNext: (String) -> Unit) {
+    var name by remember { mutableStateOf("") }
+
     Column(
         Modifier
             .fillMaxSize()
@@ -27,44 +27,40 @@ fun LocationPermission(goNext: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Column(
+        Box(
             Modifier.weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top,
+            contentAlignment = Alignment.TopCenter
         ) {
             Text(
-                text = stringResource(R.string.setup_location),
+                text = stringResource(R.string.onboarding_new_user),
                 style = MaterialTheme.typography.h4,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 36.dp),
+                modifier = Modifier.padding(bottom = 16.dp),
                 textAlign = TextAlign.Center
-            )
-            Icon(
-                painter = painterResource(R.drawable.ic_map_pin),
-                contentDescription = "",
-                modifier = Modifier.padding(bottom = 36.dp).size(100.dp)
             )
         }
         Column(
             Modifier.weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(
-                text = stringResource(R.string.setup_location_info),
-                modifier = Modifier.padding(bottom = 16.dp),
-                textAlign = TextAlign.Center
+            CustomTextInput(
+                text = name,
+                onEdit = { name = it },
+                placeholder = { Text(stringResource(R.string.setup_your_name)) },
+                isError = name.isEmpty(),
+                modifier = Modifier
+                    .padding(bottom = 8.dp)
+                    .fillMaxWidth()
             )
             Text(
-                text = stringResource(R.string.setup_location_info_small_text),
-                modifier = Modifier.padding(bottom = 4.dp),
-                style = MaterialTheme.typography.caption,
+                stringResource(R.string.onboarding_new_user_info),
                 textAlign = TextAlign.Center
             )
         }
         WideButton(
             text = stringResource(R.string.next),
-            onTap = { goNext() },
+            onTap = { goNext("") },
             modifier = Modifier.padding(bottom = 8.dp)
         )
         WideButton(

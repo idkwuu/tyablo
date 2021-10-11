@@ -1,4 +1,4 @@
-package dev.idkwuu.tyablo.screen.onboarding.steps
+package dev.idkwuu.tyablo.ui.onboarding.steps
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState

@@ -1,4 +1,4 @@
-package dev.idkwuu.tyablo.screen
+package dev.idkwuu.tyablo.ui
 
 import android.preference.PreferenceManager
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,13 +7,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
+import dev.idkwuu.tyablo.data.mapfilters.MapFilters
 import dev.idkwuu.tyablo.state.GlobalData
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.TilesOverlay
 import org.osmdroid.views.overlay.gestures.RotationGestureOverlay
 
 
@@ -35,7 +35,7 @@ fun Map() {
                 zoomController.setVisibility(CustomZoomButtonsController.Visibility.NEVER)
                 controller.setZoom(9.5)
                 controller.setCenter(GeoPoint(48.8583, 2.2944))
-                overlayManager.tilesOverlay.setColorFilter(TilesOverlay.INVERT_COLORS)
+                //overlayManager.tilesOverlay.setColorFilter(MapFilters.dark())
             }
         },
         update = { mapView ->

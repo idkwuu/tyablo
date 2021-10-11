@@ -1,4 +1,4 @@
-package dev.idkwuu.tyablo.screen.settings
+package dev.idkwuu.tyablo.ui.settings
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text

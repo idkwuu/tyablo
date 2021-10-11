@@ -61,6 +61,7 @@ fun TyabloTheme(
         else -> isSystemInDarkTheme() // System default
     }
     val systemUiController = rememberSystemUiController()
+    val colors = getTheme(isDarkMode)
 
     SideEffect {
         viewModel.setIsDarkModeActive(isDarkMode)
@@ -68,12 +69,12 @@ fun TyabloTheme(
         systemUiController.setSystemBarsColor(
             color = Color.Transparent,
             darkIcons = !isDarkMode,
-            isNavigationBarContrastEnforced = false
+            //isNavigationBarContrastEnforced = false
         )
     }
 
     MaterialTheme(
-        colors = getTheme(isDarkMode),
+        colors = colors,
         typography = typo,
         shapes = shapes
     ) {

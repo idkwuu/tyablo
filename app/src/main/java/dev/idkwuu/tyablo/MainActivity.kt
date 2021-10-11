@@ -13,10 +13,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.idkwuu.tyablo.screen.onboarding.Onboarding
+import dev.idkwuu.tyablo.ui.onboarding.Onboarding
 import dev.idkwuu.tyablo.state.GlobalData
 import dev.idkwuu.tyablo.theming.ThemeViewModel
 import dev.idkwuu.tyablo.theming.TyabloTheme
+import dev.idkwuu.tyablo.ui.home.Home
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -35,10 +36,11 @@ class MainActivity : ComponentActivity() {
                 Scaffold {
                     NavHost(
                         navController = navController,
-                        startDestination = "onboarding",
+                        startDestination = "home",
                         modifier = Modifier.fillMaxSize()
                     ) {
                         composable("onboarding") { Onboarding(themeViewModel = themeViewModel) }
+                        composable("home") { Home() }
                     }
                 }
             }
